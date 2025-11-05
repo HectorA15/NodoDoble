@@ -35,11 +35,9 @@ public class Nodo {
 
     @Override
     public String toString() {
-        return "Nodo{" + "dato=" + dato + ", siguiente=" + siguiente + ", anterior=" + anterior + '}';
+      if (this.dato != null) {
+        return this.dato.toString();
     }
-
-    
-    
-    
-    
+    return "Nodo vacío";
+    }
 }

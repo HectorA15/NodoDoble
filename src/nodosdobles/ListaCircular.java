@@ -148,7 +148,36 @@ public class ListaCircular {
             }
         }
     }
+public void Eliminar_indice(int indice) {
+        if (isVacia()) {
+            System.out.println("Lista vacia");
+        } else {
+            if (frente == ultimo) {
+                eliminarUnico();
+            } else if (indice == 0) {
+               frente=frente.getSiguiente();
+               ultimo.setSiguiente(frente);
+               frente.setAnterior(ultimo);
 
+            } else if (indice == this.cuentaNodos()) {
+               ultimo=ultimo.getAnterior();
+                 ultimo.setSiguiente(frente);
+                frente.setAnterior(ultimo);
+            } else {
+
+                Nodo q = frente;
+              
+        for (int i = 0; i < indice; i++) {
+            q= q.getSiguiente();
+        }   
+        Nodo Anterior = q.getAnterior();
+        Nodo Siguiente = q.getSiguiente();
+        
+        Anterior.setSiguiente(Siguiente);
+        Siguiente.setAnterior(Anterior);
+            }
+        }
+    }
     public Cancion getActual() {
         return ultimo != null ? ultimo.dato : null;
     }

@@ -12,6 +12,7 @@ public class main {
         String titulo;
         String artista;
         int duracion;
+        int indice;
 
         Cancion cancion;
 
@@ -78,7 +79,7 @@ public class main {
 
                 case 3:
                     System.out.print("Indice: ");
-                    int indice = sc.nextInt();
+                     indice = sc.nextInt();
                     System.out.print("Titulo: ");
                     titulo = sc.next();
                     System.out.print("Artista: ");
@@ -99,6 +100,9 @@ public class main {
                     lista.eliminarUltimo();
                     break;
                 case 6:
+                      System.out.print("Indice: ");
+                      indice = sc.nextInt();
+                      lista.Eliminar_indice(indice);
                     //lista.eliminarIndice();
                     break;
 

@@ -17,7 +17,7 @@ public class ListaCircular {
             return false;
         }
     }
-
+    
     public int cuentaNodos() {
         if (isVacia()) {
             return 0;
@@ -32,7 +32,7 @@ public class ListaCircular {
             return cuenta;
         }
     }
-
+    
     public void insertarIndice(int indice, Cancion cancion) {
         if (isVacia()) {
             insertarVacia(cancion);
@@ -59,7 +59,7 @@ public class ListaCircular {
             q.setAnterior(nuevo);
         }
     }
-
+    
     public void insertarVacia(Cancion c) {
         if (isVacia()) {
             Nodo nuevo = new Nodo(c);
@@ -71,9 +71,9 @@ public class ListaCircular {
         } else {
             System.out.println("No esta vacia...");
         }
-
+        
     }
-
+    
     public void insertarAlFrente(Cancion c) {
         Nodo nuevo = new Nodo(c);
         if (isVacia()) {
@@ -90,7 +90,7 @@ public class ListaCircular {
 
         }
     }
-
+    
     public void insertarAlFinal(Cancion cancion) {
         Nodo nuevo = new Nodo(cancion);
         if (isVacia()) {
@@ -106,12 +106,12 @@ public class ListaCircular {
             frente.setAnterior(ultimo);
         }
     }
-
+    
     public void eliminarUnico() {
         frente = null;
         ultimo = null;
     }
-
+    
     public void eliminarFrente() {
         if (isVacia()) {
             System.out.println("La lista esta vacia");
@@ -127,12 +127,14 @@ public class ListaCircular {
         }
     }
     
-    
-    
-    public void vaciarLista(){
-        while(!isVacia()){
+    public void vaciarLista() {
+        /*while (!isVacia()) {
             eliminarFrente();
-        }
+        }*/
+        
+        
+        frente = null;
+        ultimo = null;
     }
     
     public void eliminarUltimo() {
@@ -144,40 +146,41 @@ public class ListaCircular {
             } else {
                 ultimo = ultimo.getAnterior();
                 ultimo.setSiguiente(frente);
-                frente.setSiguiente(ultimo);
+                frente.setAnterior(ultimo);
             }
         }
     }
-public void Eliminar_indice(int indice) {
+    
+    public void eliminarIndice(int indice) {
         if (isVacia()) {
             System.out.println("Lista vacia");
         } else {
-            if (frente == ultimo) {
-                eliminarUnico();
-            } else if (indice == 0) {
-               frente=frente.getSiguiente();
-               ultimo.setSiguiente(frente);
-               frente.setAnterior(ultimo);
-
-            } else if (indice == this.cuentaNodos()) {
-               ultimo=ultimo.getAnterior();
-                 ultimo.setSiguiente(frente);
-                frente.setAnterior(ultimo);
+            int imax = cuentaNodos() - 1;
+            if (indice < 0 || indice > imax) {
+                System.out.println("Indice fuera de rango");
             } else {
+                if (indice == 0) {
+                    eliminarFrente();
+                } else {
+                    if (indice == imax) {
+                        eliminarUltimo();
+                    } else {
+                        Nodo q = frente;
 
-                Nodo q = frente;
-              
-        for (int i = 0; i < indice; i++) {
-            q= q.getSiguiente();
-        }   
-        Nodo Anterior = q.getAnterior();
-        Nodo Siguiente = q.getSiguiente();
-        
-        Anterior.setSiguiente(Siguiente);
-        Siguiente.setAnterior(Anterior);
+                        for (int i = 0; i < indice; i++) {
+                            q = q.getSiguiente();
+                        }
+                        Nodo Anterior = q.getAnterior();
+                        Nodo Siguiente = q.getSiguiente();
+
+                        Anterior.setSiguiente(Siguiente);
+                        Siguiente.setAnterior(Anterior);
+                    }
+                }
             }
         }
     }
+    
     public Cancion getActual() {
         return ultimo != null ? ultimo.dato : null;
     }
@@ -193,7 +196,7 @@ public void Eliminar_indice(int indice) {
             ultimo = ultimo.anterior;
         }
     }
-
+    
     public boolean eliminarActual() {
         if (isVacia()) {
             return false;
@@ -213,7 +216,7 @@ public void Eliminar_indice(int indice) {
         ultimo = next;
         return true;
     }
-
+    
     public void imprimirLista() {
 
         Nodo nueva = frente;
@@ -225,15 +228,13 @@ public void Eliminar_indice(int indice) {
         }
 
     }
-
+    
     public Nodo getFrente() {
         return this.frente;
     }
-
+    
     public Nodo getUltimo() {
         return this.ultimo;
     }
     
-    
-
 }
